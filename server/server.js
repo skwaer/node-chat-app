@@ -8,6 +8,7 @@ const publicPath = path.join(__dirname, '../public');
 
 const http = require('http');
 const port = process.env.PORT || 8080;
+var app = express();
 
 app.use(bodyParser.json());
 
