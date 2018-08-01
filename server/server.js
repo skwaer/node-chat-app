@@ -5,6 +5,7 @@ const bodyParser = require('body-parser');
 const _ = require('lodash');
 const socketIO = require('socket.io');
 
+const {generateMessage} = require('./utils/message');
 const publicPath = path.join(__dirname, '../public');
 
 const port = process.env.PORT || 8080;
@@ -28,15 +29,10 @@ io.on('connection', (socket) => {
 	// 	console.log('createEmail', newEmail);
 	// })
 
-	socket.emit('newMessage', {
-		from: "Admin",
-		text: "Welcome new user!"
-	})
+	socket.emit('newMessage', generateMessage('Admin', 'Welcome to the chat app!'));
 
-	socket.broadcast.emit('newMessage', {
-		from: "Admin",
-		text: "User joined"
-	})
+
+	socket.broadcast.emit('newMessage', generateMessage("Admin", "User joined"));
 
 	socket.on('createEmail', (newEmail) => {
 		console.log('createEmail', newEmail);
@@ -44,11 +40,7 @@ io.on('connection', (socket) => {
 
 	socket.on('createMessage', (message) => {
 		console.log(message);
-		io.emit('newMessage', {
-			from: message.from,
-			text: message.text,
-			createdAt: new Date().getTime()
-		})
+		io.emit('newMessage', generateMessage( message.from,message.text));
 
 		// socket.broadcast.emit('newMessage', {
 		// 	from: message.from,
