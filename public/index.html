@@ -1,12 +1,24 @@
 <!DOCTYPE html>
 <html>
+
 <head>
 	<meta charset="utf-8" content="">
 </head>
-	<body>
-		<h1>Hello from node-chat-app!</h1>
 
-		<script src="socket.io/socket.io.js"></script>
-		<script src="/js/index.js"></script>
-	</body>
+<body>
+	<h1>Hello from node-chat-app!</h1>
+	<p>It's the place to be</p>
+
+	<form id="message-form" class="" >
+		<input name="message" type="text" placeholder="Message" />
+		<button>Send</button>
+	</form>
+
+	<div id="message-dest"></div>
+
+	<script src="socket.io/socket.io.js"></script>
+	<script src="/js/libs/jquery-3.3.1.min.js"></script>
+	<script src="/js/index.js"></script>
+</body>
+
 </html>
